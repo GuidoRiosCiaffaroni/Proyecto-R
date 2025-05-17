@@ -146,11 +146,4 @@ Tablas y gráficos adicionales.
 
 Descripción detallada de paquetes utilizados (tidyverse, ggplot2, broom, etc.).
 
-✅ Valor Agregado (Puntos Extra)
-Análisis de correlación entre variables.
 
-Inclusión de modelos alternativos (ej: Random Forest como exploratorio).
-
-Visualización interactiva (ej: plotly).
-
-Publicación de dashboard en Shiny (opcional pero impactante).
