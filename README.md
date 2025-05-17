@@ -123,27 +123,7 @@ Bloques comentados por sección (Carga, EDA, Modelado, Visualización).
 
 Buenas prácticas en nombres de variables y funciones.
 
-8.2. Repositorio GitHub
-Subida del proyecto en un repositorio con:
 
-Código fuente.
 
-Datos (anonimizados si fuese necesario).
-
-Informe final en PDF/HTML.
-
-README explicativo.
-
-9. Entrega y Formato
-Fecha límite: 22 de junio de 2024.
-
-Formato de entrega: PDF generado desde RMarkdown o Quarto y/o GitHub.
-
-10. Anexos
-Códigos completos.
-
-Tablas y gráficos adicionales.
-
-Descripción detallada de paquetes utilizados (tidyverse, ggplot2, broom, etc.).
 
 
