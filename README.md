@@ -818,9 +818,6 @@ write.csv2(datos, "Data_Final.csv", fileEncoding = "UTF-8", row.names = FALSE)
 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
-# Cargar librerías
-#library(ggplot2)
-#library(readr)
 
 # Leer el archivo CSV modificado
 datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
@@ -846,5 +843,34 @@ dev.off()
 
 
 ```
-
 ![Screenshot](/img/001_genero_victima.png)
+
+
+
+### Distribucion de registros por comuna 
+Este grafico esta orientado a probar los graficos  
+```bash
+
+###########################################################################
+# Cargar librerías
+#library(ggplot2)
+#library(readr)
+
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Crear gráfico y guardar como imagen PNG
+png("002_distribucion_comunas.png", width = 1000, height = 800)
+
+ggplot(datos, aes(x = Nombre_Comuna)) +
+  geom_bar(fill = "darkorange") +
+  labs(title = "Distribución de casos por Comuna",
+       x = "Comuna",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))  # Rotar nombres
+
+dev.off()
+###########################################################################
+```
+![Screenshot](/img/002_distribucion_comunas.png")
