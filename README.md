@@ -873,4 +873,4 @@ ggplot(datos, aes(x = Nombre_Comuna)) +
 dev.off()
 ###########################################################################
 ```
-![Screenshot](/img/002_distribucion_comunas.png")
+![Screenshot](/img/002_distribucion_comunas.png)
