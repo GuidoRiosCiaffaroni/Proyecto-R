@@ -1,7 +1,7 @@
 # Informe de Análisis de Datos: Estudio del Acoso en las Comunas de Santiago
 ## Programación con R | Master Data Science | Universidad de las Américas (UDLA)
 
-1. Introducción General
+### 1. Introducción General
 1.1. Contextualización del Problema
 El acoso en espacios públicos y privados es una problemática social de gran relevancia, con implicancias en la seguridad, bienestar y derechos humanos de las personas. En el contexto urbano de Santiago de Chile, las manifestaciones de acoso pueden variar según factores demográficos (como sexo y edad) y geográficos (como comuna de residencia).
 
@@ -23,7 +23,7 @@ Modelar la probabilidad de sufrir acoso en función de las variables disponibles
 
 Proporcionar visualizaciones claras y relevantes para la interpretación de los resultados.
 
-2. Definición del Problema / Hipótesis
+### 2. Definición del Problema / Hipótesis
 2.1. Pregunta de Investigación
 ¿Existe una diferencia significativa en la proporción de hombres y mujeres que han reportado haber sufrido acoso en los últimos 6 meses en las comunas de Santiago?
 
@@ -32,7 +32,7 @@ Hipótesis Nula (H0): No existe una diferencia significativa en la proporción d
 
 Hipótesis Alternativa (H1): Sí existe una diferencia significativa en la proporción de casos de acoso entre hombres y mujeres.
 
-3. Descripción del Conjunto de Datos
+### 3. Descripción del Conjunto de Datos
 Variable	Tipo	Descripción
 Sexo	Cualitativa nominal	Género de la persona (Hombre/Mujer)
 Edad	Cuantitativa continua	Edad de la persona en años completos
@@ -51,7 +51,7 @@ Outliers en la variable edad.
 
 Posibles inconsistencias (ej: comunas no válidas).
 
-4. Preprocesamiento de Datos
+### 4. Preprocesamiento de Datos
 4.1. Carga y Conversión de Variables
 Utilizando tidyverse, se realizará la carga de datos y la conversión de variables a factores según corresponda.
 
@@ -66,7 +66,7 @@ Variables indicadoras si se requieren para modelado.
 4.4. Resumen de Preprocesamiento
 Se incluirá un flujo esquemático de limpieza, transformación y preparación del dataset.
 
-5. Análisis Exploratorio de Datos (EDA)
+### 5. Análisis Exploratorio de Datos (EDA)
 5.1. Distribución Demográfica
 Gráficos de barras para la distribución de sexo.
 
@@ -87,7 +87,7 @@ Boxplots de edad por condición de acoso.
 
 Tablas de contingencia cruzando sexo, comuna y acoso.
 
-6. Modelado de Datos
+### 6. Modelado de Datos
 6.1. Selección del Modelo
 Se utilizará un modelo de regresión logística binaria, dado que la variable respuesta (acoso) es dicotómica.
 
@@ -106,7 +106,7 @@ Gráficos de efectos marginales.
 
 Probabilidades predichas para interpretación práctica.
 
-7. Interpretación de Resultados
+### 7. Interpretación de Resultados
 7.1. Discusión de la Hipótesis
 Conclusión respecto a la existencia de diferencias significativas en la proporción de acoso entre hombres y mujeres.
 
@@ -117,7 +117,7 @@ Reflexión sobre los resultados en el contexto de la ciudad de Santiago.
 
 Posibles recomendaciones para prevención e intervención.
 
-8. Código R y Repositorio
+### 8. Código R y Repositorio
 8.1. Estructura de Código
 Bloques comentados por sección (Carga, EDA, Modelado, Visualización).
 
