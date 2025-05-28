@@ -187,6 +187,40 @@ service apache2 restart
 service mysql restart
 ```
 
+#### Configuracion de Servidor     
+```bash
+sed -i 's/^;extension=curl/extension=curl/' /etc/php/8.3/apache2/php.ini
+sed -i 's/^;extension=gd/extension=gd/' /etc/php/8.3/apache2/php.ini
+sed -i 's/^;extension=mbstring/extension=mbstring/' /etc/php/8.3/apache2/php.ini
+sed -i 's/^;extension=mysqli/extension=mysqli/' /etc/php/8.3/apache2/php.ini
+sed -i 's/^;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/8.3/apache2/php.ini
+
+sed -i 's/^;extension=curl/extension=curl/' /etc/php/8.3/cli/php.ini
+sed -i 's/^;extension=gd/extension=gd/' /etc/php/8.3/cli/php.ini
+sed -i 's/^;extension=mbstring/extension=mbstring/' /etc/php/8.3/cli/php.ini
+sed -i 's/^;extension=mysqli/extension=mysqli/' /etc/php/8.3/cli/php.ini
+sed -i 's/^;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/8.3/cli/php.ini
+
+sed -i 's/^;extension=curl/extension=curl/' /etc/php/8.3/fpm/php.ini
+sed -i 's/^;extension=gd/extension=gd/' /etc/php/8.3/fpm/php.ini
+sed -i 's/^;extension=mbstring/extension=mbstring/' /etc/php/8.3/fpm/php.ini
+sed -i 's/^;extension=mysqli/extension=mysqli/' /etc/php/8.3/fpm/php.ini
+sed -i 's/^;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/8.3/fpm/php.ini
+
+service apache2 restart
+
+sudo sed -i 's/^\(\s*\)AllowOverride None/\1AllowOverride All/' /etc/apache2/apache2.conf
+
+service apache2 restart
+
+chown www-data:www-data * -R /var/www/html/wordpress/
+chmod 775 * /var/www/
+chown -R www-data /var/www/ll
+sudo a2enmod rewrite
+
+```
+
+
 #### Instalacion de R en el servidor    
 ```bash
 #!/bin/bash
