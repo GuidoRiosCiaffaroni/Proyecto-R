@@ -118,8 +118,9 @@ Reflexión sobre los resultados en el contexto de la ciudad de Santiago.
 Posibles recomendaciones para prevención e intervención.
 
 ### 8. Código R y Repositorio
-8.1. Estructura de Código
-Bloques comentados por sección (Carga, EDA, Modelado, Visualización).
+8.1. Estructura 
+
+#### Instalacion del Servidor  
 
 ```bash
 #########################################################################
