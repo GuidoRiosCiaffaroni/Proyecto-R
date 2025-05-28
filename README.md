@@ -874,3 +874,31 @@ dev.off()
 ###########################################################################
 ```
 ![Screenshot](/img/002_distribucion_comunas.png)
+
+### Dsitribucion de las edades de las victimas  
+Este grafico esta orientado a probar los graficos  
+```bash
+###########################################################################
+
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Asegurarse de que la columna Edad sea numérica
+datos$Edad <- as.numeric(as.character(datos$Edad))
+
+# Crear gráfico y guardar como imagen PNG
+png("003_edad.png", width = 800, height = 600)
+
+ggplot(datos, aes(x = Edad)) +
+  geom_histogram(binwidth = 1, fill = "seagreen", color = "black") +
+  labs(title = "Distribución de Edad de las Víctimas",
+       x = "Edad",
+       y = "Frecuencia") +
+  theme_minimal()
+
+dev.off()
+###########################################################################
+
+
+```
+![Screenshot](/img/003_distribucion_edad.png)
