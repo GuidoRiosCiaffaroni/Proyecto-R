@@ -1,4 +1,4 @@
-#Informe de Análisis de Datos: Estudio del Acoso en las Comunas de Santiago#
+# Informe de Análisis de Datos: Estudio del Acoso en las Comunas de Santiago
 ##Programación con R | Master Data Science | Universidad de las Américas (UDLA)##
 
 1. Introducción General
