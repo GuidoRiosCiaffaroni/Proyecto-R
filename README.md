@@ -838,3 +838,5 @@ ggplot(datos, aes(x = Genero.Victima)) +
 
 
 ```
+
+![Screenshot](./img/001.png)
