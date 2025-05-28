@@ -296,7 +296,7 @@ EOF
 
 
 
-#### 
+#### Configuracion R
 ```bash
 #########################################################################
 #instalacion que quarto
@@ -350,6 +350,22 @@ install.packages("scatterplot3d")
 install.packages("rgl")
 ```
 
+
+### Exploracion preliminar de Datos  
+```bash
+library(tidyverse)
+library(skimr)
+library(GGally)
+library(dplyr)
+
+datos <- read.csv("/content/Data.csv", header = TRUE, sep = "," , encoding = "UTF-8") # Carga de Datos
+
+# Ver las primeras filas
+head(datos)
+
+# Ver la estructura de los datos
+glimpse(datos)
+```
 
 
 
