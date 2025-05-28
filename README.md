@@ -932,19 +932,63 @@ dev.off()
 ```
 ![Screenshot](/img/004_registro_violencia.png)
 
-### Dsitribucion de las edades de las victimas  
+### Violencia cometida hacia las mujeres  
 005 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
+
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Filtrar solo los casos donde la víctima es mujer (Genero.Victima == 1)
+datos_mujeres <- datos %>%
+  filter(Genero.Victima == 1)
+
+# Crear gráfico y guardar como imagen PNG
+png("005_violencia_hacia_mujeres.png", width = 1000, height = 700)
+
+ggplot(datos_mujeres, aes(x = Nombre_Violencia)) +
+  geom_bar(fill = "orchid") +
+  labs(title = "Tipos de Violencia Sufrida por Mujeres",
+       x = "Tipo de Violencia",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+dev.off()
+###########################################################################
 
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/005_violencia_hacia_mujeres.png)
 
 ### Dsitribucion de las edades de las victimas  
 006 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
 
+
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Filtrar solo los casos donde la víctima es hombre (Genero.Victima == 0)
+datos_hombres <- datos %>%
+  filter(Genero.Victima == 0)
+
+# Crear gráfico y guardar como imagen PNG
+png("006_violencia_hacia_hombres.png", width = 1000, height = 700)
+
+ggplot(datos_hombres, aes(x = Nombre_Violencia)) +
+  geom_bar(fill = "skyblue") +
+  labs(title = "Tipos de Violencia Sufrida por Hombres",
+       x = "Tipo de Violencia",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+dev.off()
+###########################################################################
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/006_violencia_hacia_hombres.png)
 
 ### Dsitribucion de las edades de las victimas  
 007 Este grafico esta orientado a probar los graficos  
