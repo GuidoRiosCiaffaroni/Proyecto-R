@@ -121,7 +121,11 @@ Posibles recomendaciones para prevención e intervención.
 8.1. Estructura de Código
 Bloques comentados por sección (Carga, EDA, Modelado, Visualización).
 
-Buenas prácticas en nombres de variables y funciones.
+```bash
+git clone https://github.com/usuario/proyecto.git
+cd proyecto
+npm install   # o el comando que corresponda
+
 
 
 
