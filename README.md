@@ -904,9 +904,31 @@ dev.off()
 ![Screenshot](/img/003_distribucion_edad.png)
 
 ### Dsitribucion de las edades de las victimas  
-004 Este grafico esta orientado a probar los graficos  
+004 Registros de la cantidad de actos violentos
 ```bash
+###########################################################################
 
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Verificar que la columna de tipos de violencia existe
+# Puedes ajustar el nombre exacto si es diferente
+# Supongamos que la columna se llama "Nombre_Violencia"
+# Si no existe, reemplazar por el nombre real, por ejemplo: datos$Tipo
+
+# Crear gráfico y guardar como imagen PNG
+png("004_registro_violencia.png", width = 1000, height = 700)
+
+ggplot(datos, aes(x = Nombre_Violencia)) +
+  geom_bar(fill = "tomato") +
+  labs(title = "Distribución por Tipo de Violencia",
+       x = "Tipo de violencia",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+dev.off()
+###########################################################################
 ```
 ![Screenshot](/img/004_registro_violencia.png)
 
