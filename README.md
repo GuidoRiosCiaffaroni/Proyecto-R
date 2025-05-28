@@ -815,7 +815,7 @@ write.csv2(datos, "Data_Final.csv", fileEncoding = "UTF-8", row.names = FALSE)
 ```
 
 ### Grafico Preliminar 
-Este grafico esta orientado a probar los graficos  
+001 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
 
@@ -848,7 +848,7 @@ dev.off()
 
 
 ### Distribucion de registros por comuna 
-Este grafico esta orientado a probar los graficos  
+002 Este grafico esta orientado a probar los graficos  
 ```bash
 
 ###########################################################################
@@ -876,7 +876,7 @@ dev.off()
 ![Screenshot](/img/002_distribucion_comunas.png)
 
 ### Dsitribucion de las edades de las victimas  
-Este grafico esta orientado a probar los graficos  
+003 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
 
@@ -902,3 +902,74 @@ dev.off()
 
 ```
 ![Screenshot](/img/003_distribucion_edad.png)
+
+### Dsitribucion de las edades de las victimas  
+004 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+005 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+006 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+007 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+008 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+009 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+010 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+0011 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+0012 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
+### Dsitribucion de las edades de las victimas  
+013 Este grafico esta orientado a probar los graficos  
+```bash
+
+```
+![Screenshot](/img/004_registro_violencia.png)
+
