@@ -847,4 +847,4 @@ dev.off()
 
 ```
 
-![Screenshot](./img/001_genero_victima.png)
+![Screenshot](/img/001_genero_victima.png)
