@@ -818,15 +818,21 @@ write.csv2(datos, "Data_Final.csv", fileEncoding = "UTF-8", row.names = FALSE)
 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
-# Leer archivo modificado
+# Cargar librerías
+#library(ggplot2)
+#library(readr)
+
+# Leer el archivo CSV modificado
 datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
 
-# Convertir a factor para asegurar etiquetas correctas
+# Convertir columna Genero.Victima a factor con etiquetas
 datos$Genero.Victima <- factor(datos$Genero.Victima,
                                levels = c(0, 1, 2),
                                labels = c("Hombre", "Mujer", "Otro"))
 
-# Crear histograma
+# Crear gráfico y guardar como imagen PNG
+png("001_genero_victima.png", width = 800, height = 600)
+
 ggplot(datos, aes(x = Genero.Victima)) +
   geom_bar(fill = "steelblue") +
   labs(title = "Distribución por Sexo (Víctima)",
@@ -834,9 +840,11 @@ ggplot(datos, aes(x = Genero.Victima)) +
        y = "Frecuencia") +
   theme_minimal()
 
+dev.off()
+
 ###########################################################################
 
 
 ```
 
-![Screenshot](./img/001.png)
+![Screenshot](./img/001_genero_victima.png)
