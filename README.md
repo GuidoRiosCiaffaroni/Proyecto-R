@@ -1019,7 +1019,7 @@ ggplot(datos, aes(x = Nombre_Violencia, fill = Genero.Victima)) +
 dev.off()
 ###########################################################################
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/007_violencia_hombres_mujeres.png)
 
 ### Dsitribucion de las edades de las victimas  
 008 Este grafico esta orientado a probar los graficos  
