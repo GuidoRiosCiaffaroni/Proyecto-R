@@ -1183,7 +1183,7 @@ graficar_violencia_por_edad_comuna_y_genero <- function(archivo_csv, edad_objeti
 
   # Validar si hay datos
   if (nrow(datos_filtrados) == 0) {
-    message("❗ No hay registros para la comuna '", nombre_comuna, "', edad ", edad_objetivo, " y género ", genero_victima, ".")
+    message(" No hay registros para la comuna '", nombre_comuna, "', edad ", edad_objetivo, " y género ", genero_victima, ".")
     return(NULL)
   }
 
@@ -1206,7 +1206,7 @@ graficar_violencia_por_edad_comuna_y_genero <- function(archivo_csv, edad_objeti
     dev.off()
     message(paste(" Gráfico guardado en:", salida))
   }, error = function(e) {
-    message("❌ Error al generar el gráfico: ", e$message)
+    message(" Error al generar el gráfico: ", e$message)
     dev.off()
   })
 }
