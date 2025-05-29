@@ -811,8 +811,10 @@ write.csv2(datos, "Data_Final.csv", fileEncoding = "UTF-8", row.names = FALSE)
 ###########################################################################
 ```
 
-### Grafico Preliminar 
-001 Este grafico esta orientado a probar los graficos  
+### 001 Grafico Preliminar 
+El código en R realiza una visualización básica de la distribución de víctimas según su género. Primero, carga un archivo CSV llamado "Data_modificado.csv", asegurándose de que los textos se lean correctamente y sin convertir cadenas a factores automáticamente. Luego, transforma la columna Genero.Victima en un factor con tres niveles etiquetados como "Hombre", "Mujer" y "Otro", asignando etiquetas más descriptivas a los valores codificados 0, 1 y 2.
+
+Posteriormente, crea un gráfico de barras usando ggplot2, donde el eje x representa el género de las víctimas y el eje y la frecuencia de cada categoría. Las barras se rellenan con un color azul ("steelblue") y se aplica un estilo minimalista con theme_minimal(). Finalmente, el gráfico se guarda como una imagen PNG con dimensiones de 800 por 600 píxeles bajo el nombre "001_genero_victima.png".
 ```bash
 ###########################################################################
 
@@ -844,8 +846,10 @@ dev.off()
 
 
 
-### Distribucion de registros por comuna 
-002 Este grafico esta orientado a probar los graficos  
+### 002 Distribucion de registros por comuna 
+Este código en R genera un gráfico de barras que muestra la distribución de casos por comuna a partir de un archivo CSV llamado "Data_modificado.csv". Primero, se carga el archivo especificando la codificación UTF-8 y evitando que las cadenas se conviertan automáticamente en factores. Luego, utilizando ggplot2, se crea un gráfico donde el eje x representa los nombres de las comunas (Nombre_Comuna) y el eje y la cantidad de registros (frecuencia de casos) en cada una.
+
+Las barras del gráfico se rellenan con color naranja oscuro ("darkorange") y se aplica un estilo visual limpio mediante theme_minimal(). Además, para mejorar la legibilidad del eje x, los nombres de las comunas se rotan 90 grados. Finalmente, el gráfico se guarda como una imagen PNG con dimensiones de 1000 por 800 píxeles bajo el nombre "002_distribucion_comunas.png".
 ```bash
 
 ###########################################################################
@@ -872,8 +876,10 @@ dev.off()
 ```
 ![Screenshot](/img/002_distribucion_comunas.png)
 
-### Dsitribucion de las edades de las victimas  
-003 Este grafico esta orientado a probar los graficos  
+### 003 Dsitribucion de las edades de las victimas  
+Este código en R genera un histograma que muestra la distribución de edades de las víctimas utilizando datos del archivo "Data_modificado.csv". Primero, se carga el archivo asegurando una correcta codificación de caracteres y evitando la conversión automática de cadenas a factores. Luego, se transforma explícitamente la columna Edad a formato numérico, garantizando que se puedan realizar operaciones estadísticas y gráficas sobre ella.
+
+Con ggplot2, se construye un histograma donde el eje x representa las edades y el eje y la frecuencia de aparición de cada valor. Se utiliza un ancho de bin de 1 año para una mayor precisión y detalle, coloreando las barras de verde marino ("seagreen") con bordes negros. Se aplica un tema minimalista para una presentación clara. Finalmente, el gráfico se guarda como imagen PNG de 800 por 600 píxeles con el nombre "003_edad.png".
 ```bash
 ###########################################################################
 
@@ -901,7 +907,9 @@ dev.off()
 ![Screenshot](/img/003_distribucion_edad.png)
 
 ### Dsitribucion de las edades de las victimas  
-004 Registros de la cantidad de actos violentos
+Este código en R genera un gráfico de barras que representa la distribución de los distintos tipos de violencia registrados en el archivo "Data_modificado.csv". Primero, se lee el archivo con codificación UTF-8 y sin convertir cadenas automáticamente en factores. Luego, se asume que la columna que contiene los tipos de violencia se llama Nombre_Violencia (debe ajustarse si el nombre difiere en los datos reales).
+
+Utilizando ggplot2, se crea un gráfico donde el eje x muestra las distintas categorías de violencia y el eje y su frecuencia. Las barras se visualizan en color rojo tomate ("tomato"), y se aplica un diseño minimalista con theme_minimal(). Para facilitar la lectura, las etiquetas del eje x se rotan 90 grados. Finalmente, el gráfico se guarda como imagen PNG de 1000 por 700 píxeles bajo el nombre "004_registro_violencia.png".
 ```bash
 ###########################################################################
 
@@ -929,8 +937,10 @@ dev.off()
 ```
 ![Screenshot](/img/004_registro_violencia.png)
 
-### Violencia cometida hacia las mujeres  
-005 Este grafico esta orientado a probar los graficos  
+### 005 Violencia cometida hacia las mujeres  
+Este código en R genera un gráfico de barras que muestra los tipos de violencia sufridos exclusivamente por mujeres, utilizando datos del archivo "Data_modificado.csv". Primero, se carga el archivo asegurando la correcta codificación de caracteres y sin convertir cadenas a factores automáticamente. Luego, se filtran los registros donde la columna Genero.Victima tiene el valor 1, que representa a mujeres, y se guarda ese subconjunto en datos_mujeres.
+
+Con ggplot2, se crea un gráfico de barras donde el eje x representa los distintos tipos de violencia (Nombre_Violencia) y el eje y su frecuencia. Las barras se muestran en color orquídea ("orchid") y se aplica un diseño limpio usando theme_minimal(). Para mejorar la legibilidad, las etiquetas del eje x se rotan 90 grados. Finalmente, el gráfico se guarda como imagen PNG de 1000 por 700 píxeles con el nombre "005_violencia_hacia_mujeres.png".
 ```bash
 ###########################################################################
 
@@ -958,8 +968,10 @@ dev.off()
 ```
 ![Screenshot](/img/005_violencia_hacia_mujeres.png)
 
-### Violencia cometida hacia las hombres 
-006 Este grafico esta orientado a probar los graficos  
+### 006 Violencia cometida hacia las hombres 
+Este código en R genera un gráfico de barras que representa los tipos de violencia sufridos exclusivamente por hombres, utilizando información contenida en el archivo "Data_modificado.csv". En primer lugar, se carga el archivo especificando la codificación UTF-8 y evitando la conversión automática de cadenas en factores. A continuación, se filtran los registros donde la columna Genero.Victima es igual a 0, que corresponde a víctimas de sexo masculino, y se guarda el resultado en datos_hombres.
+
+Usando ggplot2, se construye un gráfico de barras donde el eje x muestra los distintos tipos de violencia (Nombre_Violencia) y el eje y la cantidad de casos correspondientes. Las barras se colorean en azul claro ("skyblue"), y se utiliza un tema minimalista para una visualización clara y estética. Para facilitar la lectura, los nombres de las categorías en el eje x se rotan 90 grados. Finalmente, el gráfico se exporta como una imagen PNG de 1000 por 700 píxeles bajo el nombre "006_violencia_hacia_hombres.png".
 ```bash
 ###########################################################################
 
