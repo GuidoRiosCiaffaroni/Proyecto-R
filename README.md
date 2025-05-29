@@ -961,7 +961,7 @@ dev.off()
 ```
 ![Screenshot](/img/005_violencia_hacia_mujeres.png)
 
-### Dsitribucion de las edades de las victimas  
+### Violencia cometida hacia las hombres 
 006 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
@@ -993,14 +993,62 @@ dev.off()
 ### Dsitribucion de las edades de las victimas  
 007 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
+# Cargar librerías
 
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Asegurar que la columna Genero.Victima esté en formato factor
+datos$Genero.Victima <- factor(datos$Genero.Victima,
+                               levels = c(0, 1),
+                               labels = c("Hombre", "Mujer"))
+
+# Crear gráfico y guardar como imagen PNG
+png("007_violencia_hombres_mujeres.png", width = 1200, height = 800)
+
+ggplot(datos, aes(x = Nombre_Violencia, fill = Genero.Victima)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Comparación de Tipos de Violencia Sufrida por Hombres y Mujeres",
+       x = "Tipo de Violencia",
+       y = "Frecuencia",
+       fill = "Género de la Víctima") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+dev.off()
+###########################################################################
 ```
 ![Screenshot](/img/004_registro_violencia.png)
 
 ### Dsitribucion de las edades de las victimas  
 008 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
+# Cargar librerías
 
+# Leer el archivo CSV modificado
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Asegurar que la columna Genero.Victima esté en formato factor
+datos$Genero.Victima <- factor(datos$Genero.Victima,
+                               levels = c(0, 1),
+                               labels = c("Hombre", "Mujer"))
+
+# Crear gráfico y guardar como imagen PNG
+png("007_violencia_hombres_mujeres.png", width = 1200, height = 800)
+
+ggplot(datos, aes(x = Nombre_Violencia, fill = Genero.Victima)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Comparación de Tipos de Violencia Sufrida por Hombres y Mujeres",
+       x = "Tipo de Violencia",
+       y = "Frecuencia",
+       fill = "Género de la Víctima") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+dev.off()
+###########################################################################
 ```
 ![Screenshot](/img/004_registro_violencia.png)
 
