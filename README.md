@@ -1226,7 +1226,7 @@ graficar_violencia_por_edad_comuna_y_genero(
   salida = paste0("011_violencia_", comuna, "_", genero_texto, "_", edad, ".png")
 )
 ```
-![Screenshot](/img/011_violencia_maipu_mujer_22)
+![Screenshot](/img/011_violencia_maipu_mujer_22.png)
 
 ### Dsitribucion de las edades de las victimas  
 0012 Este grafico esta orientado a probar los graficos  
