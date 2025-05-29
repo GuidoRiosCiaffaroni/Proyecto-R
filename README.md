@@ -1231,9 +1231,79 @@ graficar_violencia_por_edad_comuna_y_genero(
 ### Dsitribucion de las edades de las victimas  
 0012 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
+# Función para graficar en 3D: Edad, Comuna y Género de la Víctima
+graficar_violencia_3d <- function(archivo_csv, genero_victima = NULL, salida = "grafico_3d.png") {
+  # Cargar librerías necesarias
+  #if (!requireNamespace("scatterplot3d", quietly = TRUE)) install.packages("scatterplot3d")
+  #library(scatterplot3d)
+  #library(readr)
+  #library(dplyr)
+
+  # Leer archivo CSV
+  datos <- read.csv2(archivo_csv, encoding = "UTF-8", stringsAsFactors = FALSE)
+
+  # Validar columnas necesarias
+  if (!all(c("Edad", "Genero.Victima", "Nombre_Comuna") %in% names(datos))) {
+    stop("El archivo debe contener las columnas: Edad, Genero.Victima y Nombre_Comuna.")
+  }
+
+  # Preprocesar y codificar comuna
+  datos <- datos %>%
+    mutate(
+      Edad = as.numeric(Edad),
+      Genero.Victima = as.numeric(Genero.Victima),
+      Comuna_Cod = as.numeric(factor(Nombre_Comuna))
+    ) %>%
+    filter(!is.na(Edad), !is.na(Genero.Victima), !is.na(Comuna_Cod))
+
+  # Aplicar filtro de género si se especifica
+  if (!is.null(genero_victima)) {
+    datos <- datos %>% filter(Genero.Victima == genero_victima)
+  }
+
+  # Verificar que hay datos
+  if (nrow(datos) == 0) {
+    message(" No hay datos para el criterio especificado.")
+    return(NULL)
+  }
+
+  # Generar gráfico y guardar como imagen PNG
+  tryCatch({
+    png(salida, width = 1000, height = 800)
+    scatterplot3d(
+      x = datos$Edad,
+      y = datos$Comuna_Cod,
+      z = datos$Genero.Victima,
+      pch = 16,
+      color = "steelblue",
+      xlab = "Edad",
+      ylab = "Comuna (codificada)",
+      zlab = "Género de la Víctima",
+      main = "Gráfico 3D: Edad, Comuna, Género de la Víctima"
+    )
+    dev.off()
+    message(paste(" Gráfico guardado como:", salida))
+  }, error = function(e) {
+    dev.off()
+    message(" Error al generar el gráfico:", e$message)
+  })
+}
+###########################################################################
+
+# Todas las víctimas
+graficar_violencia_3d("Data_modificado.csv", salida = "012_violencia_3d_todas.png")
+
+# Solo mujeres (1)
+graficar_violencia_3d("Data_modificado.csv", genero_victima = 1, salida = "012_violencia_3d_mujeres.png")
+
+# Solo hombres (0)
+graficar_violencia_3d("Data_modificado.csv", genero_victima = 0, salida = "012_violencia_3d_hombres.png")
 
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/012_violencia_3d_todas.png)
+![Screenshot](/img/012_violencia_3d_mujeres.png)
+![Screenshot](/img/012_violencia_3d_hombres.png)
 
 ### Dsitribucion de las edades de las victimas  
 013 Este grafico esta orientado a probar los graficos  
