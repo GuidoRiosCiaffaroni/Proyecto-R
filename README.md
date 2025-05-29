@@ -906,7 +906,7 @@ dev.off()
 ```
 ![Screenshot](/img/003_distribucion_edad.png)
 
-### Dsitribucion de las edades de las victimas  
+### 004 Distribución de los distintos tipos de violencia  
 Este código en R genera un gráfico de barras que representa la distribución de los distintos tipos de violencia registrados en el archivo "Data_modificado.csv". Primero, se lee el archivo con codificación UTF-8 y sin convertir cadenas automáticamente en factores. Luego, se asume que la columna que contiene los tipos de violencia se llama Nombre_Violencia (debe ajustarse si el nombre difiere en los datos reales).
 
 Utilizando ggplot2, se crea un gráfico donde el eje x muestra las distintas categorías de violencia y el eje y su frecuencia. Las barras se visualizan en color rojo tomate ("tomato"), y se aplica un diseño minimalista con theme_minimal(). Para facilitar la lectura, las etiquetas del eje x se rotan 90 grados. Finalmente, el gráfico se guarda como imagen PNG de 1000 por 700 píxeles bajo el nombre "004_registro_violencia.png".
@@ -999,8 +999,10 @@ dev.off()
 ```
 ![Screenshot](/img/006_violencia_hacia_hombres.png)
 
-### Comparacion de los actos violentos comentidos hacia hombres y mujeres  
-007 Este grafico esta orientado a probar los graficos  
+### 007 Comparacion de los actos violentos comentidos hacia hombres y mujeres  
+Este código en R genera un gráfico comparativo que muestra los tipos de violencia sufridos por hombres y mujeres, utilizando datos del archivo "Data_modificado.csv". Primero, se carga el archivo con codificación UTF-8 y sin transformar automáticamente las cadenas en factores. Luego, la columna Genero.Victima se convierte en un factor con dos niveles: "Hombre" (0) y "Mujer" (1), para facilitar la interpretación.
+
+Usando ggplot2, se construye un gráfico de barras agrupadas donde el eje x representa los distintos tipos de violencia (Nombre_Violencia) y el eje y la frecuencia de casos. Las barras se agrupan por género utilizando el argumento position = "dodge", lo que permite una comparación visual directa entre hombres y mujeres para cada tipo de violencia. Cada grupo se colorea según el género de la víctima, y se añade una leyenda explicativa. El diseño se estiliza con un tema minimalista, y se rotan las etiquetas del eje x para mejorar la legibilidad. Finalmente, el gráfico se exporta como imagen PNG de 1200 por 800 píxeles bajo el nombre "007_violencia_hombres_mujeres.png". 
 ```bash
 ###########################################################################
 # Cargar librerías
@@ -1030,15 +1032,19 @@ dev.off()
 ```
 ![Screenshot](/img/007_violencia_hombres_mujeres.png)
 
-### Ingreso de los registros por meses y genero
-008 Este grafico esta orientado a probar los graficos  
+### 008 Ingreso de los registros por meses y genero
+Este código en R genera un gráfico de barras que muestra la cantidad de ingresos registrados por mes, diferenciados por género de la víctima. Primero, se carga el archivo "Data_modificado.csv" con codificación UTF-8, evitando convertir automáticamente cadenas en factores. Luego, se convierte la columna Fecha, que incluye fecha y hora en formato "dd-mm-aaaa hh:mm", a un objeto de fecha y hora (POSIXct) utilizando la función dmy_hm() de lubridate.
+
+Posteriormente, se extrae el nombre del mes de cada fecha y se guarda en la nueva columna Mes, definiendo los niveles como los nombres completos de los meses en orden cronológico. La variable Genero.Victima se transforma en un factor con tres niveles etiquetados como "Hombre", "Mujer" y "Otro".
+
+Finalmente, se utiliza ggplot2 para crear un gráfico de barras agrupadas (position = "dodge"), donde el eje x representa los meses del año y el eje y el número de ingresos. Las barras se colorean según el género de la víctima, y se incluye una leyenda explicativa. El gráfico se estiliza con un tema minimalista y se guarda como imagen PNG de 1200 por 700 píxeles bajo el nombre "008_Ingreso_PorMesesYGenero.png".  
 ```bash
 ###########################################################################
 # Cargar librerías
 #library(ggplot2)
 #library(readr)
 #library(dplyr)
-#library(lubridate)
+library(lubridate)
 
 # Leer el archivo CSV
 datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
@@ -1072,8 +1078,12 @@ dev.off()
 ```
 ![Screenshot](/img/008_Ingreso_PorMesesYGenero.png)
 
-### Ingreso de Registros Diferenciados por Mes y Genero
-009 Este grafico esta orientado a probar los graficos  
+### 009 Ingreso de Registros Diferenciados por Mes y Genero
+Este código en R genera un histograma que muestra la distribución detallada de ingresos por hora del día, utilizando información temporal contenida en el archivo "Data_modificado.csv". Primero, se carga el archivo con codificación UTF-8, sin convertir cadenas en factores automáticamente. Luego, la columna Fecha, que incluye fecha y hora en formato "dd-mm-aaaa hh:mm", se convierte a un objeto POSIXct mediante la función dmy_hm() de lubridate.
+
+A partir de esta fecha, se calcula una nueva variable Hora_decimal, que representa la hora del ingreso en formato decimal (por ejemplo, 14.25 para las 14:15). Usando ggplot2, se construye un histograma donde el eje x representa las horas del día y el eje y la cantidad de ingresos en cada franja horaria. Las barras tienen un ancho de bin de 0.25, equivalente a intervalos de 15 minutos, y se colorean en naranja oscuro con borde negro.
+
+El eje x se ajusta para mostrar las horas completas del día, de 0:00 a 23:00. El gráfico se estiliza con un tema minimalista y se guarda como imagen PNG de 1000 por 600 píxeles bajo el nombre "009_ingresos_Horario.png".
 ```bash
 ###########################################################################
 # Cargar librerías
@@ -1103,8 +1113,14 @@ dev.off()
 ```
 ![Screenshot](/img/009_ingresos_Horario.png)
 
-### Funcion Graficar Violencia de genero sobre genero
-010 Este grafico esta orientado a probar los graficos  
+### 010 Funcion Graficar Violencia de genero sobre genero
+Este código en R define una función llamada graficar_violencia_por_genero que permite generar gráficos de barras para visualizar los tipos de violencia según combinaciones específicas de género de la víctima y del agresor, usando datos de un archivo CSV. La función acepta cuatro argumentos: el archivo CSV, el género de la víctima (genero_victima), el género del agresor (genero_agresor), y el nombre del archivo de salida para guardar el gráfico.
+
+Primero, se cargan los datos y se convierten las columnas Genero.Victima y Genero.Agresor a valores numéricos. Luego, se filtran los registros que coincidan con los géneros indicados. Si no hay datos que cumplan con esos criterios, la función devuelve un mensaje y termina sin crear el gráfico.
+
+En caso contrario, se genera un gráfico de barras con ggplot2 que muestra la frecuencia de los distintos tipos de violencia (Nombre_Violencia) en la combinación de géneros especificada, y se guarda como imagen PNG. El gráfico se estiliza con colores y un diseño minimalista.
+
+Finalmente, se ejecuta la función cuatro veces para visualizar los casos de violencia mujer a mujer, mujer a hombre, hombre a mujer y hombre a hombre, guardando cada gráfico con un nombre representativo. 
 ```bash
 ###########################################################################
 ###########################################################################
@@ -1168,8 +1184,14 @@ graficar_violencia_por_genero("/content/Data_modificado.csv", 0, 0, "010_hombres
 ![Screenshot](/img/010_hombres_sobre_mujeres.png)
 ![Screenshot](/img/010_hombres_sobre_hombres.png)
 
-### Función para Graficar tipo de violencia por edad, comuna y género de la víctima 
-0011 Este grafico esta orientado a probar los graficos  
+### 011 Función para Graficar tipo de violencia por edad, comuna y género de la víctima 
+Este código en R define una función llamada graficar_violencia_por_edad_comuna_y_genero, que genera un gráfico de barras para visualizar los tipos de violencia registrados en una comuna específica, para una edad y género determinados. Primero, se cargan los datos desde un archivo CSV y se convierten las columnas relevantes (Genero.Victima, Edad, Nombre_Comuna) a formatos adecuados para su análisis: numéricos y texto en minúsculas.
+
+Luego, se filtran los registros que coincidan exactamente con la edad, la comuna y el género de la víctima especificados como argumentos. Si no existen registros que cumplan estas condiciones, la función informa al usuario y no genera ningún gráfico.
+
+Si existen datos, se crea un gráfico de barras con ggplot2, donde el eje x representa los distintos tipos de violencia (Nombre_Violencia) y el eje y la frecuencia de cada tipo. Las barras se colorean en rojo tomate y se aplica un tema visual limpio. Finalmente, el gráfico se guarda como una imagen PNG.
+
+Como ejemplo de uso, se ejecuta la función para una mujer de 22 años en la comuna de Maipú, generando un archivo llamado "011_violencia_maipu_mujer_22.png".
 ```bash
 ###########################################################################
 # Función: Graficar tipo de violencia por edad, comuna y género de la víctima
@@ -1240,8 +1262,22 @@ graficar_violencia_por_edad_comuna_y_genero(
 ```
 ![Screenshot](/img/011_violencia_maipu_mujer_22.png)
 
-### Función para graficar en 3D: Edad, Comuna y Género de la Víctima
-0012 Este grafico esta orientado a probar los graficos  
+### 012 Función para graficar en 3D: Edad, Comuna y Género de la Víctima
+Este código en R define una función llamada graficar_violencia_3d, que genera un gráfico tridimensional para visualizar la relación entre la edad de la víctima, la comuna (codificada numéricamente) y su género, a partir de los datos contenidos en un archivo CSV. Se utilizan las librerías scatterplot3d, readr y dplyr.
+
+Primero, se cargan los datos desde el archivo indicado. Luego, se verifica que las columnas esenciales (Edad, Genero.Victima y Nombre_Comuna) estén presentes. A continuación, se preprocesan los datos: la comuna se codifica numéricamente usando factor(), y se filtran los registros incompletos o con valores faltantes.
+
+Si se especifica un valor para genero_victima, los datos se filtran para incluir solo registros correspondientes a ese género. Si no hay datos tras el filtrado, se muestra un mensaje y no se genera el gráfico.
+
+Cuando hay datos válidos, se crea un gráfico 3D con scatterplot3d, donde:
+
+el eje X representa la edad,
+
+el eje Y representa el código de la comuna,
+
+el eje Z representa el género de la víctima.
+
+Los puntos se colorean en azul y el gráfico se guarda como imagen PNG. La función se ejecuta tres veces: para todas las víctimas, solo mujeres y solo hombres. 
 ```bash
 ###########################################################################
 # Función para graficar en 3D: Edad, Comuna y Género de la Víctima
