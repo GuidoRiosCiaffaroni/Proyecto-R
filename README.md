@@ -1228,7 +1228,7 @@ graficar_violencia_por_edad_comuna_y_genero(
 ```
 ![Screenshot](/img/011_violencia_maipu_mujer_22.png)
 
-### Dsitribucion de las edades de las victimas  
+### Función para graficar en 3D: Edad, Comuna y Género de la Víctima
 0012 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
