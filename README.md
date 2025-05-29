@@ -1156,7 +1156,7 @@ graficar_violencia_por_genero("/content/Data_modificado.csv", 0, 0, "010_hombres
 ![Screenshot](/img/010_hombres_sobre_mujeres.png)
 ![Screenshot](/img/010_hombres_sobre_hombres.png)
 
-### Dsitribucion de las edades de las victimas  
+### Función para Graficar tipo de violencia por edad, comuna y género de la víctima 
 0011 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
