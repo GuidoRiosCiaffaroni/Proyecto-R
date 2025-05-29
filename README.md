@@ -607,29 +607,6 @@ write.csv2(datos, "Data_modificado_sin_tildes.csv", fileEncoding = "UTF-8", row.
 ###########################################################################
 ```
 
-### Exploracion preliminar de Datos  
-```bash
-###########################################################################
-
-# Leer archivo modificado
-datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
-
-# Convertir a factor para asegurar etiquetas correctas
-datos$Genero.Victima <- factor(datos$Genero.Victima,
-                               levels = c(0, 1, 2),
-                               labels = c("Hombre", "Mujer", "Otro"))
-
-# Crear histograma
-ggplot(datos, aes(x = Genero.Victima)) +
-  geom_bar(fill = "steelblue") +
-  labs(title = "Distribución por Sexo (Víctima)",
-       x = "Sexo",
-       y = "Frecuencia") +
-  theme_minimal()
-
-###########################################################################
-```
-
 ### 001 Grafico Preliminar 
 El código en R realiza una visualización básica de la distribución de víctimas según su género. Primero, carga un archivo CSV llamado "Data_modificado.csv", asegurándose de que los textos se lean correctamente y sin convertir cadenas a factores automáticamente. Luego, transforma la columna Genero.Victima en un factor con tres niveles etiquetados como "Hombre", "Mujer" y "Otro", asignando etiquetas más descriptivas a los valores codificados 0, 1 y 2.
 
