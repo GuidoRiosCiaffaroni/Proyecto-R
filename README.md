@@ -1091,35 +1091,70 @@ dev.off()
 ```
 ![Screenshot](/img/009_ingresos_Horario.png)
 
-### Dsitribucion de las edades de las victimas  
+### Funcion Graficar Violencia de genero sobre genero
 010 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
-# Cargar librerías
-
-# Leer archivo CSV
-datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
-
-# Convertir Fecha y calcular hora decimal (ej: 14.25 = 14:15)
-datos$Fecha <- dmy_hm(datos$Fecha)
-datos$Hora_decimal <- hour(datos$Fecha) + minute(datos$Fecha) / 60
-
-# Crear gráfico y guardar imagen PNG
-png("009_ingresos_Horario.png", width = 1000, height = 600)
-
-ggplot(datos, aes(x = Hora_decimal)) +
-  geom_histogram(binwidth = 0.25, fill = "darkorange", color = "black") +  # cada 15 minutos
-  scale_x_continuous(breaks = seq(0, 23.75, by = 1),
-                     labels = paste0(seq(0, 23), ":00")) +
-  labs(title = "Distribución Detallada de Ingresos por Hora del Día",
-       x = "Hora del Día",
-       y = "Número de Ingresos") +
-  theme_minimal()
-
-dev.off()
 ###########################################################################
+# Funcion Graficar Violencia de genero sobre genero 
+graficar_violencia_por_genero <- function(archivo_csv, genero_victima = 1, genero_agresor = 1, salida = "grafico.png") {
+  library(ggplot2)
+  library(readr)
+  library(dplyr)
+  
+  # Leer archivo
+  datos <- read.csv2(archivo_csv, encoding = "UTF-8", stringsAsFactors = FALSE)
+  
+  # Convertir a numérico
+  datos$Genero.Victima <- as.numeric(as.character(datos$Genero.Victima))
+  datos$Genero.Agresor <- as.numeric(as.character(datos$Genero.Agresor))
+  
+  # Filtrar
+  datos_filtrados <- datos %>%
+    filter(Genero.Victima == genero_victima,
+           Genero.Agresor == genero_agresor)
+  
+  # Si no hay datos, no crear el gráfico
+  if (nrow(datos_filtrados) == 0) {
+    message("No se encontraron registros para esos géneros.")
+    return(NULL)
+  }
+  
+  # Intentar crear gráfico
+  tryCatch({
+    png(salida, width = 1000, height = 700)
+    print(
+      ggplot(datos_filtrados, aes(x = Nombre_Violencia)) +
+        geom_bar(fill = "steelblue") +
+        labs(
+          title = paste("Tipos de Violencia - Víctima:", genero_victima, "| Agresor:", genero_agresor),
+          x = "Tipo de Violencia",
+          y = "Frecuencia"
+        ) +
+        theme_minimal() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    )
+    dev.off()
+    message(paste(" Gráfico guardado en:", salida))
+  }, error = function(e) {
+    message(" Error al generar el gráfico: ", e$message)
+    dev.off()  # cierra dispositivo en caso de error
+  })
+}
+###########################################################################
+
+graficar_violencia_por_genero("/content/Data_modificado.csv", 1, 1, "010_mujeres_sobre_mujeres.png")
+graficar_violencia_por_genero("/content/Data_modificado.csv", 0, 1, "010_mujeres_sobre_hombres.png")
+graficar_violencia_por_genero("/content/Data_modificado.csv", 1, 0, "010_hombres_sobre_mujeres.png")
+graficar_violencia_por_genero("/content/Data_modificado.csv", 0, 0, "010_hombres_sobre_hombres.png")
+
+############################################################################
+############################################################################
 ```
-![Screenshot](/img/009_ingresos_Horario.png)
+![Screenshot](/img/010_mujeres_sobre_mujeres.png)
+![Screenshot](/img/010_mujeres_sobre_hombres.png)
+![Screenshot](/img/010_hombres_sobre_mujeres.png)
+![Screenshot](/img/010_hombres_sobre_hombres.png)
 
 ### Dsitribucion de las edades de las victimas  
 0011 Este grafico esta orientado a probar los graficos  
