@@ -293,9 +293,6 @@ install.packages("ggplot2", repos="https://cloud.r-project.org")
 EOF
 ```
 
-
-
-
 #### Configuracion R
 ```bash
 #########################################################################
@@ -990,7 +987,7 @@ dev.off()
 ```
 ![Screenshot](/img/006_violencia_hacia_hombres.png)
 
-### Dsitribucion de las edades de las victimas  
+### Comparacion de los actos violentos comentidos hacia hombres y mujeres  
 007 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
@@ -1021,41 +1018,15 @@ dev.off()
 ```
 ![Screenshot](/img/007_violencia_hombres_mujeres.png)
 
-### Dsitribucion de las edades de las victimas  
+### Ingreso de los registros por meses y genero
 008 Este grafico esta orientado a probar los graficos  
 ```bash
 ###########################################################################
 # Cargar librerías
-
-# Leer el archivo CSV modificado
-datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
-
-# Asegurar que la columna Genero.Victima esté en formato factor
-datos$Genero.Victima <- factor(datos$Genero.Victima,
-                               levels = c(0, 1),
-                               labels = c("Hombre", "Mujer"))
-
-# Crear gráfico y guardar como imagen PNG
-png("007_violencia_hombres_mujeres.png", width = 1200, height = 800)
-
-ggplot(datos, aes(x = Nombre_Violencia, fill = Genero.Victima)) +
-  geom_bar(position = "dodge") +
-  labs(title = "Comparación de Tipos de Violencia Sufrida por Hombres y Mujeres",
-       x = "Tipo de Violencia",
-       y = "Frecuencia",
-       fill = "Género de la Víctima") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
-dev.off()
-###########################################################################
-```
-![Screenshot](/img/004_registro_violencia.png)
-
-### Ingreso de Registros Diferenciados por Mes y Genero
-009 Este grafico esta orientado a probar los graficos  
-```bash
-###########################################################################
+#library(ggplot2)
+#library(readr)
+#library(dplyr)
+#library(lubridate)
 
 # Leer el archivo CSV
 datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
@@ -1085,8 +1056,40 @@ ggplot(datos, aes(x = Mes, fill = Genero.Victima)) +
 
 dev.off()
 ###########################################################################
+
 ```
-![Screenshot](/img/008_Ingreso_PorMesesYGenero)
+![Screenshot](/img/008_Ingreso_PorMesesYGenero.png)
+
+### Ingreso de Registros Diferenciados por Mes y Genero
+009 Este grafico esta orientado a probar los graficos  
+```bash
+###########################################################################
+# Cargar librerías
+
+# Leer archivo CSV
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Convertir Fecha y calcular hora decimal (ej: 14.25 = 14:15)
+datos$Fecha <- dmy_hm(datos$Fecha)
+datos$Hora_decimal <- hour(datos$Fecha) + minute(datos$Fecha) / 60
+
+# Crear gráfico y guardar imagen PNG
+png("009_ingresos_Horario.png", width = 1000, height = 600)
+
+ggplot(datos, aes(x = Hora_decimal)) +
+  geom_histogram(binwidth = 0.25, fill = "darkorange", color = "black") +  # cada 15 minutos
+  scale_x_continuous(breaks = seq(0, 23.75, by = 1),
+                     labels = paste0(seq(0, 23), ":00")) +
+  labs(title = "Distribución Detallada de Ingresos por Hora del Día",
+       x = "Hora del Día",
+       y = "Número de Ingresos") +
+  theme_minimal()
+
+dev.off()
+###########################################################################
+
+```
+![Screenshot](/img/009_ingresos_Horario.png)
 
 ### Dsitribucion de las edades de las victimas  
 010 Este grafico esta orientado a probar los graficos  
