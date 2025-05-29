@@ -1052,19 +1052,71 @@ dev.off()
 ```
 ![Screenshot](/img/004_registro_violencia.png)
 
-### Dsitribucion de las edades de las victimas  
+### Ingreso de Registros Diferenciados por Mes y Genero
 009 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
 
+# Leer el archivo CSV
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Convertir formato de fecha con hora: "09-09-2021 14:09"
+datos$Fecha <- dmy_hm(datos$Fecha)  # convierte a objeto POSIXct con hora
+
+# Extraer nombre del mes como texto ordenado
+datos$Mes <- factor(month(datos$Fecha, label = TRUE, abbr = FALSE),
+                    levels = month.name, ordered = TRUE)
+
+# Convertir Genero.Victima a factor con etiquetas
+datos$Genero.Victima <- factor(datos$Genero.Victima,
+                               levels = c(0, 1, 2),
+                               labels = c("Hombre", "Mujer", "Otro"))
+
+# Crear gráfico y guardar imagen
+png("008_Ingreso_PorMesesYGenero.png", width = 1200, height = 700)
+
+ggplot(datos, aes(x = Mes, fill = Genero.Victima)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Cantidad de Ingresos por Mes, diferenciados por Género",
+       x = "Mes del Año",
+       y = "Número de Ingresos",
+       fill = "Género de la Víctima") +
+  theme_minimal()
+
+dev.off()
+###########################################################################
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/008_Ingreso_PorMesesYGenero)
 
 ### Dsitribucion de las edades de las victimas  
 010 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
+# Cargar librerías
 
+# Leer archivo CSV
+datos <- read.csv2("Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Convertir Fecha y calcular hora decimal (ej: 14.25 = 14:15)
+datos$Fecha <- dmy_hm(datos$Fecha)
+datos$Hora_decimal <- hour(datos$Fecha) + minute(datos$Fecha) / 60
+
+# Crear gráfico y guardar imagen PNG
+png("009_ingresos_Horario.png", width = 1000, height = 600)
+
+ggplot(datos, aes(x = Hora_decimal)) +
+  geom_histogram(binwidth = 0.25, fill = "darkorange", color = "black") +  # cada 15 minutos
+  scale_x_continuous(breaks = seq(0, 23.75, by = 1),
+                     labels = paste0(seq(0, 23), ":00")) +
+  labs(title = "Distribución Detallada de Ingresos por Hora del Día",
+       x = "Hora del Día",
+       y = "Número de Ingresos") +
+  theme_minimal()
+
+dev.off()
+###########################################################################
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/009_ingresos_Horario.png)
 
 ### Dsitribucion de las edades de las victimas  
 0011 Este grafico esta orientado a probar los graficos  
