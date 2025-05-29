@@ -121,7 +121,13 @@ Posibles recomendaciones para prevención e intervención.
 8.1. Estructura 
 
 #### Instalacion del Servidor  
+Este script automatiza la instalación y configuración de un entorno LAMP (Linux, Apache, MariaDB/MySQL y PHP) en un sistema Ubuntu. Comienza actualizando los paquetes del sistema (apt update y upgrade) y asegurando herramientas básicas como nano y tmux. Luego instala el servidor web Apache2 y el sistema gestor de bases de datos MariaDB, sustituyendo a MySQL.
 
+Se procede con la instalación del lenguaje PHP, su módulo para Apache (libapache2-mod-php) y soporte para bases de datos (php-mysql). A continuación, se añaden múltiples extensiones PHP necesarias para un entorno web moderno, como php-curl, php-gd, php-mbstring, php-xml, php-zip, entre otras.
+
+Además, se incluyen utilidades como wget, unzip, ca-certificates y gnupg2 para la gestión de paquetes y repositorios seguros. Se habilitan módulos de Apache como php* y rewrite, fundamentales para el funcionamiento de frameworks y CMS (como WordPress o Laravel).
+
+Finalmente, el script realiza una limpieza de paquetes innecesarios (apt autoremove) y reinicia los servicios de Apache y MySQL/MariaDB para aplicar los cambios. Este procedimiento deja el sistema listo para desplegar aplicaciones web en PHP con soporte de base de datos.
 ```bash
 ## 
 sudo apt update -y 
@@ -187,7 +193,12 @@ service apache2 restart
 service mysql restart
 ```
 
-#### Configuracion de Servidor     
+#### Configuracion de Servidor
+Este script automatiza la activación de extensiones críticas de PHP 8.3 en un sistema Ubuntu, editando directamente los archivos php.ini para los modos Apache, CLI y FPM. Utiliza el comando sed para descomentar (activar) extensiones como curl, gd, mbstring, mysqli y pdo_mysql, esenciales para la funcionalidad de muchas aplicaciones web como WordPress o Laravel.
+
+Posteriormente, reinicia el servicio Apache para que los cambios en la configuración surtan efecto. También modifica el archivo principal de configuración de Apache (apache2.conf) para permitir el uso de archivos .htaccess, cambiando la directiva AllowOverride de None a All, lo que es fundamental para la reescritura de URLs y otras configuraciones personalizadas.
+
+El script finaliza ajustando permisos sobre los directorios del servidor web. Establece como propietario al usuario www-data (el que ejecuta Apache) y configura los permisos de escritura necesarios en /var/www/html/wordpress/ y /var/www/, lo que garantiza que Apache tenga acceso adecuado. Finalmente, se habilita el módulo rewrite de Apache para permitir reglas de redirección y reescritura de URLs. Este script deja listo el entorno para alojar sitios web dinámicos.
 ```bash
 sed -i 's/^;extension=curl/extension=curl/' /etc/php/8.3/apache2/php.ini
 sed -i 's/^;extension=gd/extension=gd/' /etc/php/8.3/apache2/php.ini
@@ -221,7 +232,16 @@ sudo a2enmod rewrite
 ```
 
 
-#### Instalacion de R en el servidor    
+#### Instalacion de R en el servidor
+Este script automatiza la instalación de R, RStudio Desktop y RStudio Server en Ubuntu. Inicia con la actualización del sistema y la instalación de utilitarios esenciales como locales, gnupg y software-properties-common. Luego, incorpora bibliotecas de desarrollo requeridas para compilar paquetes R con dependencias en C/C++, gráficos y red (libcurl, libssl, libxml2, entre otras).
+
+Posteriormente, agrega el repositorio oficial de R (cloud.r-project.org) y su clave GPG, asegurando la instalación desde fuentes confiables. Luego instala r-base, que incluye el intérprete de R y herramientas principales.
+
+El script continúa descargando e instalando RStudio Desktop y RStudio Server, ambos mediante archivos .deb. Asegura permisos de ejecución y resuelve dependencias con apt install -f.
+
+Finalmente, dentro de una sesión no interactiva de R, instala los paquetes tidyverse y ggplot2, ampliamente utilizados para análisis de datos y visualización.
+
+Este script permite desplegar un entorno completo de análisis estadístico y científico sobre Ubuntu, listo para usuarios locales y remotos, con todas las dependencias necesarias para un trabajo fluido con R y RStudio.
 ```bash
 #!/bin/bash
 
@@ -294,6 +314,13 @@ EOF
 ```
 
 #### Configuracion R
+Este script tiene como objetivo preparar un entorno completo de análisis de datos y visualización en R mediante la instalación de paquetes clave. Comienza con quarto, herramienta fundamental para la generación de reportes reproducibles y dinámicos en múltiples formatos (HTML, PDF, Word).
+
+Se instala el metapaquete tidyverse, que agrupa herramientas esenciales como ggplot2, dplyr, tidyr, readr, purrr y tibble, facilitando tareas de importación, manipulación, visualización y organización de datos. Para análisis exploratorio rápido, se incorpora skimr, que ofrece estadísticas descriptivas enriquecidas.
+
+Se refuerza el enfoque visual con ggplot2, base de la gramática de gráficos en R, junto con GGally, que extiende sus capacidades para crear gráficos multivariantes como matrices de dispersión. plotly añade interactividad a los gráficos, permitiendo zoom, tooltips y exportaciones dinámicas.
+
+Además, se incluye shiny, un framework para construir aplicaciones web interactivas directamente en R, ideal para compartir análisis en línea. Finalmente, scatterplot3d y rgl permiten crear gráficos tridimensionales estáticos e interactivos, ampliando las capacidades visuales para datos multivariantes. En conjunto, este script configura un entorno robusto y versátil para ciencia de datos en R.
 ```bash
 #########################################################################
 #instalacion que quarto
@@ -1353,10 +1380,5 @@ graficar_violencia_3d("Data_modificado.csv", genero_victima = 0, salida = "012_v
 ![Screenshot](/img/012_violencia_3d_mujeres.png)
 ![Screenshot](/img/012_violencia_3d_hombres.png)
 
-### Dsitribucion de las edades de las victimas  
-013 Este grafico esta orientado a probar los graficos  
-```bash
 
-```
-![Screenshot](/img/004_registro_violencia.png)
 
