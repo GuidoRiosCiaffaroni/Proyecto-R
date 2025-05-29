@@ -1159,9 +1159,74 @@ graficar_violencia_por_genero("/content/Data_modificado.csv", 0, 0, "010_hombres
 ### Dsitribucion de las edades de las victimas  
 0011 Este grafico esta orientado a probar los graficos  
 ```bash
+###########################################################################
+# Función: Graficar tipo de violencia por edad, comuna y género de la víctima
+graficar_violencia_por_edad_comuna_y_genero <- function(archivo_csv, edad_objetivo, nombre_comuna, genero_victima, salida = "violencia_edad_comuna_genero.png") {
+  library(ggplot2)
+  library(readr)
+  library(dplyr)
 
+  # Leer el archivo
+  datos <- read.csv2(archivo_csv, encoding = "UTF-8", stringsAsFactors = FALSE)
+
+  # Convertir columnas a formatos adecuados
+  datos$Genero.Victima <- as.numeric(as.character(datos$Genero.Victima))
+  datos$Edad <- as.numeric(as.character(datos$Edad))
+  datos$Nombre_Comuna <- tolower(datos$Nombre_Comuna)
+  nombre_comuna <- tolower(nombre_comuna)
+
+  # Filtrar por edad, comuna y género
+  datos_filtrados <- datos %>%
+    filter(Edad == edad_objetivo,
+           Nombre_Comuna == nombre_comuna,
+           Genero.Victima == genero_victima)
+
+  # Validar si hay datos
+  if (nrow(datos_filtrados) == 0) {
+    message("❗ No hay registros para la comuna '", nombre_comuna, "', edad ", edad_objetivo, " y género ", genero_victima, ".")
+    return(NULL)
+  }
+
+  # Crear gráfico
+  tryCatch({
+    png(salida, width = 1000, height = 700)
+    print(
+      ggplot(datos_filtrados, aes(x = Nombre_Violencia)) +
+        geom_bar(fill = "tomato") +
+        labs(
+          title = paste("Violencia - Comuna:", tools::toTitleCase(nombre_comuna),
+                        "| Edad:", edad_objetivo,
+                        "| Género:", genero_victima),
+          x = "Tipo de Violencia",
+          y = "Frecuencia"
+        ) +
+        theme_minimal() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    )
+    dev.off()
+    message(paste(" Gráfico guardado en:", salida))
+  }, error = function(e) {
+    message("❌ Error al generar el gráfico: ", e$message)
+    dev.off()
+  })
+}
+###########################################################################
+
+# Ejemplo de uso: hombre (0), edad 30, comuna "maipu"
+genero <- 1
+genero_texto <- ifelse(genero == 1, "mujer", "hombre")
+comuna <- "maipu"
+edad <- 22
+
+graficar_violencia_por_edad_comuna_y_genero(
+  archivo_csv = "/content/Data_modificado.csv",
+  edad_objetivo = edad,
+  nombre_comuna = comuna,
+  genero_victima = genero,
+  salida = paste0("011_violencia_", comuna, "_", genero_texto, "_", edad, ".png")
+)
 ```
-![Screenshot](/img/004_registro_violencia.png)
+![Screenshot](/img/011_violencia_maipu_mujer_22)
 
 ### Dsitribucion de las edades de las victimas  
 0012 Este grafico esta orientado a probar los graficos  
