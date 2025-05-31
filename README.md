@@ -1299,14 +1299,14 @@ grafico_genero_victima <- function(df) {
   g <- ggplot(df, aes(x = Nombre_Genero_Victima_Texto)) +
     geom_bar(fill = "steelblue") +
     labs(title = "Casos por género de la víctima", x = "Género", y = "Cantidad")
-  ggsave("grafico_genero_victima.png", plot = g, width = 6, height = 4, dpi = 300)
+  ggsave("012_grafico_genero_victima.png", plot = g, width = 6, height = 4, dpi = 300)
 }
 
 grafico_genero_cruzado <- function(df) {
   g <- ggplot(df, aes(x = Nombre_Genero_Victima_Texto, fill = Nombre_Genero_Agresor_Texto)) +
     geom_bar(position = "dodge") +
     labs(title = "Víctima vs Agresor por género", x = "Género víctima", fill = "Género agresor")
-  ggsave("grafico_genero_cruzado.png", plot = g, width = 6, height = 4, dpi = 300)
+  ggsave("012_grafico_genero_cruzado.png", plot = g, width = 6, height = 4, dpi = 300)
 }
 
 grafico_comuna <- function(df) {
@@ -1314,14 +1314,14 @@ grafico_comuna <- function(df) {
     geom_bar(fill = "darkorange") +
     labs(title = "Casos por comuna", x = "Comuna", y = "Cantidad") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
-  ggsave("grafico_comuna.png", plot = g, width = 8, height = 5, dpi = 300)
+  ggsave("012_grafico_comuna.png", plot = g, width = 8, height = 5, dpi = 300)
 }
 
 grafico_edad_comuna <- function(df) {
   g <- ggplot(df, aes(x = Edad, y = Nombre_Comuna, color = Nombre_Genero_Victima_Texto)) +
     geom_point(size = 2) +
     labs(title = "Edad de víctimas por comuna", x = "Edad", y = "Comuna")
-  ggsave("grafico_edad_comuna.png", plot = g, width = 6, height = 5, dpi = 300)
+  ggsave("012_grafico_edad_comuna.png", plot = g, width = 6, height = 5, dpi = 300)
 }
 
 grafico_pastel_tipo <- function(df) {
@@ -1333,14 +1333,14 @@ grafico_pastel_tipo <- function(df) {
     geom_col() +
     coord_polar("y", start = 0) +
     labs(title = "Proporción por género de víctima", fill = "Género")
-  ggsave("grafico_pastel_tipo.png", plot = g, width = 5, height = 5, dpi = 300)
+  ggsave("012_grafico_pastel_tipo.png", plot = g, width = 5, height = 5, dpi = 300)
 }
 
 grafico_tiempo <- function(df) {
   g <- ggplot(df, aes(x = Fecha)) +
     geom_histogram(binwidth = 86400, fill = "purple") +
     labs(title = "Distribución temporal de casos", x = "Fecha", y = "Cantidad")
-  ggsave("grafico_tiempo.png", plot = g, width = 7, height = 4, dpi = 300)
+  ggsave("012_grafico_tiempo.png", plot = g, width = 7, height = 4, dpi = 300)
 }
 
 # === 3. Ejecutar y guardar gráficos ===
@@ -1353,3 +1353,8 @@ grafico_pastel_tipo(datos)
 grafico_tiempo(datos)
 ```
 
+![Screenshot](/img/012_grafico_genero_victima.png)
+![Screenshot](/img/012_grafico_genero_cruzado.png)
+![Screenshot](/img/012_grafico_comuna.png)
+![Screenshot](/img/012_grafico_pastel_tipo.png")
+![Screenshot](/img/012_grafico_tiempo.png)
