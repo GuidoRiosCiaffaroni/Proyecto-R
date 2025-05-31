@@ -1267,9 +1267,7 @@ graficar_violencia_3d("Data_modificado.csv", genero_victima = 0, salida = "012_v
 ![Screenshot](/img/012_violencia_3d_mujeres.png)
 ![Screenshot](/img/012_violencia_3d_hombres.png)
 
-
-
-El está diseñado en R para Generar un grafico mediante una funcion el cual analizar visualmente datos relacionados con casos de violencia, cargados desde un archivo CSV real. Utiliza las librerías ggplot2, dplyr y readr para procesar y visualizar los datos de forma estructurada.
+El siguiente generar un grafico mediante una funcion el cual analizar visualmente datos relacionados con casos de violencia, cargados desde un archivo CSV real. Utiliza las librerías ggplot2, dplyr y readr para procesar y visualizar los datos de forma estructurada.
 En una primera etapa, el script importa los datos desde un archivo denominado Data_modificado.csv, convirtiendo la columna Fecha al formato fecha-hora POSIXct. Luego, realiza una limpieza de los datos, filtrando aquellos registros que tienen valores faltantes en columnas claves como el género de la víctima, la edad y la comuna.
 Posteriormente, se definen seis funciones para generar distintos tipos de gráficos:
 Barras por género de la víctima, que muestra la frecuencia de casos según el género.
