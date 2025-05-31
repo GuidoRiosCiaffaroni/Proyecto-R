@@ -1352,9 +1352,13 @@ grafico_edad_comuna(datos)
 grafico_pastel_tipo(datos)
 grafico_tiempo(datos)
 ```
-
+Esta función en R crea un gráfico de barras que muestra la cantidad de casos según el género de la víctima. Utiliza ggplot2 para visualizar los datos con barras en color azul y etiquetas descriptivas. El gráfico se guarda automáticamente como una imagen PNG llamada 012_grafico_genero_victima.png con alta resolución.
 ![Screenshot](/img/012_grafico_genero_victima.png)
+Esta función genera un gráfico de barras agrupadas que compara el género de la víctima con el del agresor. Cada barra representa la cantidad de casos por género de víctima, diferenciados por colores según el género del agresor. El gráfico se guarda como imagen PNG con el nombre 012_grafico_genero_cruzado.png en alta resolución.
 ![Screenshot](/img/012_grafico_genero_cruzado.png)
+Esta función genera un gráfico de barras que muestra la cantidad de casos registrados por comuna. Utiliza barras de color naranja y rota las etiquetas del eje X para facilitar su lectura. El objetivo es visualizar la distribución geográfica de los casos en el dataset. El gráfico se guarda como archivo PNG con el nombre 012_grafico_comuna.png en alta resolución.
 ![Screenshot](/img/012_grafico_comuna.png)
+Esta función crea un gráfico de pastel que muestra la proporción de casos según el género de la víctima. Agrupa y resume los datos por género, y luego utiliza ggplot2 con coordenadas polares para representar visualmente la distribución porcentual. El gráfico se guarda como imagen PNG con el nombre 012_grafico_pastel_tipo.png en alta resolución.
 ![Screenshot](/img/012_grafico_pastel_tipo.png")
+Esta función genera un histograma que muestra la distribución temporal de los casos registrados, utilizando un intervalo de un día (86.400 segundos) como ancho de banda. El gráfico permite visualizar la frecuencia de casos a lo largo del tiempo y se guarda como imagen PNG con el nombre 012_grafico_tiempo.png en alta resolución.
 ![Screenshot](/img/012_grafico_tiempo.png)
