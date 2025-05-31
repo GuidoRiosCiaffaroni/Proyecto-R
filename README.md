@@ -699,16 +699,60 @@ graf6 <- ggplot(datos, aes(x = Fecha)) +
 ggsave("grafico_casos_por_fecha.png", plot = graf6, width = 7, height = 4, dpi = 300)
 ```
 
+Gráfico de barras: Casos por género de la víctima
+Código: graf1
 
+Eje X: Género de la víctima (Nombre_Genero_Victima_Texto).
+
+Eje Y: Cantidad de casos registrados.
+
+Descripción: Representa cuántos casos se registraron para cada género de víctima. Se visualiza fácilmente cuál es el género más afectado.
 ![Screenshot](/img/001_grafico_genero_victima.png)
+Gráfico de barras agrupadas: Víctima vs Agresor por género
+Código: graf2
 
+Eje X: Género de la víctima.
+
+Colores (fill): Género del agresor (Nombre_Genero_Agresor_Texto).
+
+Descripción: Muestra cómo se distribuyen los agresores por género, según el género de la víctima. Útil para analizar relaciones de género en los casos de violencia.
 ![Screenshot](/img/001_grafico_victima_agresor.png)
+Código: graf3
+
+Eje X: Nombre de la comuna (Nombre_Comuna).
+
+Eje Y: Frecuencia de casos.
+
+Descripción: Permite identificar en qué comunas se reportan más casos. Las etiquetas están giradas para facilitar la lectura.
 
 ![Screenshot](/img/001_grafico_comuna.png)
+Código: graf4
+
+Eje X: Edad de la víctima.
+
+Eje Y: Comuna del hecho.
+
+Colores: Género de la víctima.
+
+Descripción: Muestra cómo se distribuyen las edades de las víctimas según la comuna, diferenciando los géneros con colores. Útil para análisis cruzado geográfico-etario.
 
 ![Screenshot](/img/001_grafico_edad_vs_comuna.png)
+Gráfico de pastel: Proporción por género de víctima
+Código: graf5
+
+Segmentos: Frecuencia de casos por género de víctima.
+
+Descripción: Presenta visualmente la proporción de casos entre los distintos géneros. Complementa al gráfico de barras (graf1) pero con énfasis porcentual.
 
 ![Screenshot](/img/001_grafico_pastel_genero.png)
+Histograma: Distribución temporal de casos
+Código: graf6
+
+Eje X: Fecha del incidente (convertida a formato POSIXct).
+
+Eje Y: Número de casos por día.
+
+Descripción: Muestra cómo se distribuyen los casos en el tiempo. El binwidth de 86400 segundos (1 día) permite observar la frecuencia diaria de reportes.
 
 ![Screenshot](/img/001_grafico_casos_por_fecha.png)
 
