@@ -1269,3 +1269,89 @@ graficar_violencia_3d("Data_modificado.csv", genero_victima = 0, salida = "012_v
 
 
 
+El está diseñado en R para Generar un grafico mediante una funcion el cual analizar visualmente datos relacionados con casos de violencia, cargados desde un archivo CSV real. Utiliza las librerías ggplot2, dplyr y readr para procesar y visualizar los datos de forma estructurada.
+En una primera etapa, el script importa los datos desde un archivo denominado Data_modificado.csv, convirtiendo la columna Fecha al formato fecha-hora POSIXct. Luego, realiza una limpieza de los datos, filtrando aquellos registros que tienen valores faltantes en columnas claves como el género de la víctima, la edad y la comuna.
+Posteriormente, se definen seis funciones para generar distintos tipos de gráficos:
+Barras por género de la víctima, que muestra la frecuencia de casos según el género.
+Barras agrupadas víctima-agresor, que compara el género de víctimas y agresores.
+Casos por comuna, para identificar la distribución geográfica.
+Dispersión edad-comuna, que cruza edad, comuna y género de víctima.
+Gráfico de pastel, que representa la proporción por género de víctima.
+Histograma temporal, que muestra cómo varían los casos en el tiempo.
+Cada gráfico se guarda automáticamente en formato PNG con alta resolución, facilitando su uso en informes o presentaciones. En conjunto, este código permite visualizar de forma clara y eficiente los patrones y distribuciones en los datos de violencia registrados.
+
+```bash
+# Cargar librerías necesarias
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# === 1. Cargar datos reales ===
+datos <- read.csv2("/content/Data_modificado.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Convertir columna Fecha a formato de fecha
+datos$Fecha <- as.POSIXct(datos$Fecha, format = "%d-%m-%Y %H:%M", tz = "UTC")
+
+# Eliminar registros con valores faltantes clave
+datos <- datos %>% filter(!is.na(Nombre_Genero_Victima_Texto), !is.na(Edad), !is.na(Nombre_Comuna))
+
+# === 2. Funciones de gráficos ===
+
+grafico_genero_victima <- function(df) {
+  g <- ggplot(df, aes(x = Nombre_Genero_Victima_Texto)) +
+    geom_bar(fill = "steelblue") +
+    labs(title = "Casos por género de la víctima", x = "Género", y = "Cantidad")
+  ggsave("grafico_genero_victima.png", plot = g, width = 6, height = 4, dpi = 300)
+}
+
+grafico_genero_cruzado <- function(df) {
+  g <- ggplot(df, aes(x = Nombre_Genero_Victima_Texto, fill = Nombre_Genero_Agresor_Texto)) +
+    geom_bar(position = "dodge") +
+    labs(title = "Víctima vs Agresor por género", x = "Género víctima", fill = "Género agresor")
+  ggsave("grafico_genero_cruzado.png", plot = g, width = 6, height = 4, dpi = 300)
+}
+
+grafico_comuna <- function(df) {
+  g <- ggplot(df, aes(x = Nombre_Comuna)) +
+    geom_bar(fill = "darkorange") +
+    labs(title = "Casos por comuna", x = "Comuna", y = "Cantidad") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  ggsave("grafico_comuna.png", plot = g, width = 8, height = 5, dpi = 300)
+}
+
+grafico_edad_comuna <- function(df) {
+  g <- ggplot(df, aes(x = Edad, y = Nombre_Comuna, color = Nombre_Genero_Victima_Texto)) +
+    geom_point(size = 2) +
+    labs(title = "Edad de víctimas por comuna", x = "Edad", y = "Comuna")
+  ggsave("grafico_edad_comuna.png", plot = g, width = 6, height = 5, dpi = 300)
+}
+
+grafico_pastel_tipo <- function(df) {
+  df_summary <- df %>%
+    group_by(Nombre_Genero_Victima_Texto) %>%
+    summarise(Frecuencia = n())
+  
+  g <- ggplot(df_summary, aes(x = "", y = Frecuencia, fill = Nombre_Genero_Victima_Texto)) +
+    geom_col() +
+    coord_polar("y", start = 0) +
+    labs(title = "Proporción por género de víctima", fill = "Género")
+  ggsave("grafico_pastel_tipo.png", plot = g, width = 5, height = 5, dpi = 300)
+}
+
+grafico_tiempo <- function(df) {
+  g <- ggplot(df, aes(x = Fecha)) +
+    geom_histogram(binwidth = 86400, fill = "purple") +
+    labs(title = "Distribución temporal de casos", x = "Fecha", y = "Cantidad")
+  ggsave("grafico_tiempo.png", plot = g, width = 7, height = 4, dpi = 300)
+}
+
+# === 3. Ejecutar y guardar gráficos ===
+
+grafico_genero_victima(datos)
+grafico_genero_cruzado(datos)
+grafico_comuna(datos)
+grafico_edad_comuna(datos)
+grafico_pastel_tipo(datos)
+grafico_tiempo(datos)
+```
+
