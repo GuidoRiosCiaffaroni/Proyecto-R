@@ -2,7 +2,7 @@
 ## Programación con R | Master Data Science | Universidad de las Américas (UDLA.)
 Autores
 Guido Alejandro Ríos Ciaffaroni
-
+Eduardo Alex Opazo Diaz
 
 ### 1. Introducción General
 
