@@ -1,5 +1,8 @@
 # Informe de Análisis de Datos: Estudio del Acoso en las Comunas de Santiago
 ## Programación con R | Master Data Science | Universidad de las Américas (UDLA.)
+Autores
+Guido Alejandro Ríos Ciaffaroni
+
 
 ### 1. Introducción General
 
@@ -1345,3 +1348,5 @@ Esta función crea un gráfico de pastel que muestra la proporción de casos seg
 ![Screenshot](/img/012_grafico_pastel_tipo.png)
 Esta función genera un histograma que muestra la distribución temporal de los casos registrados, utilizando un intervalo de un día (86.400 segundos) como ancho de banda. El gráfico permite visualizar la frecuencia de casos a lo largo del tiempo y se guarda como imagen PNG con el nombre 012_grafico_tiempo.png en alta resolución.
 ![Screenshot](/img/012_grafico_tiempo.png)
+
+
